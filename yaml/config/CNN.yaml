@@ -1,0 +1,36 @@
+# Data parameters
+# "HR-mix1", "HR-single", "LR-mix2", "LR-single", "HR-all", "LR-all", "test"
+data:
+  data_type: "HR-mix1"
+  # windows: "E:/AFCI/Datasets/"
+  # linux: "/home/xiaoman/Projects/Datasets/"
+  data_path: "/home/xiaoman/Projects/Datasets/"
+
+# Model parameters
+model:
+  model: "CNN"
+  window_size: null
+
+# Training parameters
+training:
+  epochs: 300
+  batch_size: 512
+  lr: 1.0e-3
+  optimizer: "Adam"
+  momentum: 0.9
+
+# Test parameters
+test:
+  n_runs: 5
+  checkpoint_mode: "last"
+  checkpoint_path: null
+  model_save_format: "full_model"
+
+# System parameters
+system:
+  device: "cuda"
+  log_interval: 1
+  save_interval: 1
+  # windows: "E:/AFCI/checkpoints"
+  # linux: "/home/xiaoman/Projects/AFCI/checkpoints"
+  save_path: "/home/xiaoman/Projects/AFCI/checkpoints"

@@ -1,0 +1,12 @@
+2026-06-26 00:47:06,417 - INFO - ---------------------------数据集描述---------------------------
+2026-06-26 00:47:06,417 - INFO - 测试数据集为HR-mix1
+2026-06-26 00:47:06,417 - INFO - 配置文件: /root/Projects/ArcFaultDetection/yaml/config/Transformer.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/00-10000_multi_airconditioner02-refrigerator_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/01-10000_multi_kettle01-microwaveoven_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/02-10000_multi_refrigerator-airconditioner_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/03-10000_multi_ricecooker-electricoven_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/04-10000_multi_inductioncooker-airpurifier_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/05-10000_multi_airpurifier-airconditioner03_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/06-10000_multi_microwaveoven-waterheater_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/07-10000_multi_electricoven-washingmachine_m2.yaml
+2026-06-26 00:47:06,417 - INFO - Loading data from yaml/data/08-10000_multi_airconditioner01-inductioncooker_m2.yaml

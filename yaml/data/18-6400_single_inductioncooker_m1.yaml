@@ -1,0 +1,6 @@
+data:
+  U_path: "E:/AFCI/Datasets/IAED-processed/6400_single_inductioncooker_m1/U.csv"
+  I_path: "E:/AFCI/Datasets/IAED-processed/6400_single_inductioncooker_m1/I.csv"
+  label_path: "E:/AFCI/Datasets/IAED-processed/6400_single_inductioncooker_m1/label.csv"
+  window_size: 1024
+  sample_rate: 6400

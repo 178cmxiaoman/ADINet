@@ -1,0 +1,142 @@
+2025-06-09 22:47:23,168 - INFO - ---------------------------数据集描述---------------------------
+2025-06-09 22:47:23,168 - INFO - 训练数据集为LR-single
+2025-06-09 22:47:23,168 - INFO - Loading data from yaml/18-6400_single_inductioncooker_m1.yaml
+2025-06-09 22:47:23,168 - INFO - Loading data from yaml/19-6400_single_refrigerator_m1.yaml
+2025-06-09 22:47:23,168 - INFO - Loading data from yaml/20-6400_single_kettle02_m1.yaml
+2025-06-09 22:47:23,168 - INFO - Loading data from yaml/21-6400_single_electricoven_m1.yaml
+2025-06-09 22:47:23,168 - INFO - Loading data from yaml/22-6400_single_ricecooker_m1.yaml
+2025-06-09 22:47:23,168 - INFO - Loading data from yaml/23-6400_single_kettle01_m1.yaml
+2025-06-09 22:47:23,168 - INFO - Loading data from yaml/24-6400_single_microwaveoven_m1.yaml
+2025-06-09 22:47:25,431 - INFO - 数据读取完成，总共用时2.26 秒
+2025-06-09 22:47:25,432 - INFO - 使用 cuda 训练模型
+2025-06-09 22:47:25,957 - INFO - 使用 6400 的数据集, 窗口大小为 1000
+2025-06-09 22:47:25,957 - INFO - ---------------------------超参数设置---------------------------
+2025-06-09 22:47:25,958 - INFO - data_type: LR-single
+2025-06-09 22:47:25,958 - INFO - data_path: /root/AFCI/Datasets/
+2025-06-09 22:47:25,958 - INFO - model: AE
+2025-06-09 22:47:25,958 - INFO - window_size: 1024
+2025-06-09 22:47:25,958 - INFO - epochs: 100
+2025-06-09 22:47:25,958 - INFO - batch_size: 128
+2025-06-09 22:47:25,958 - INFO - lr: 0.0005
+2025-06-09 22:47:25,958 - INFO - optimizer: Adam
+2025-06-09 22:47:25,958 - INFO - momentum: 0.9
+2025-06-09 22:47:25,958 - INFO - device: cuda
+2025-06-09 22:47:25,958 - INFO - log_interval: 1
+2025-06-09 22:47:25,958 - INFO - save_interval: 1
+2025-06-09 22:47:25,958 - INFO - save_path: /root/AFCI/checkpoints
+2025-06-09 22:47:25,958 - INFO - ---------------------------模型结构---------------------------
+2025-06-09 22:47:25,958 - INFO - 模型参数量为：68823769
+2025-06-09 22:47:25,958 - INFO - AE(
+  (conv1): Conv1d(1, 8, kernel_size=(4,), stride=(1,))
+  (fc1): Linear(in_features=8168, out_features=8168, bias=True)
+  (fc2): Linear(in_features=8168, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=8168, bias=True)
+  (pad): ConstantPad1d(padding=(3, 2), value=0)
+  (conv2): Conv1d(8, 1, kernel_size=(4,), stride=(1,))
+  (relu): ReLU()
+)
+2025-06-09 22:47:27,072 - INFO - ---------------------------开始模型训练---------------------------
+2025-06-09 22:47:28,381 - INFO - Epoch [1/100], Loss: 1.3811, F1: 0.3610, Accuracy: 0.5627, Recall: 0.3299, Precision: 0.3986, FPR: 0.2980, FNR: 0.6701
+2025-06-09 22:47:29,350 - INFO - Epoch [2/100], Loss: 0.6869, F1: 0.2536, Accuracy: 0.6489, Recall: 0.1592, Precision: 0.6222, FPR: 0.0579, FNR: 0.8408
+2025-06-09 22:47:30,308 - INFO - Epoch [3/100], Loss: 0.6395, F1: 0.0206, Accuracy: 0.6283, Recall: 0.0104, Precision: 0.7857, FPR: 0.0017, FNR: 0.9896
+2025-06-09 22:47:31,271 - INFO - Epoch [4/100], Loss: 0.6542, F1: 0.3720, Accuracy: 0.5517, Recall: 0.3545, Precision: 0.3912, FPR: 0.3303, FNR: 0.6455
+2025-06-09 22:47:32,232 - INFO - Epoch [5/100], Loss: 0.6472, F1: 0.2635, Accuracy: 0.6308, Recall: 0.1763, Precision: 0.5210, FPR: 0.0970, FNR: 0.8237
+2025-06-09 22:47:33,200 - INFO - Epoch [6/100], Loss: 0.6131, F1: 0.5891, Accuracy: 0.6340, Recall: 0.7005, Precision: 0.5083, FPR: 0.4058, FNR: 0.2995
+2025-06-09 22:47:34,170 - INFO - Epoch [7/100], Loss: 0.6203, F1: 0.2146, Accuracy: 0.6674, Recall: 0.1213, Precision: 0.9275, FPR: 0.0057, FNR: 0.8787
+2025-06-09 22:47:35,137 - INFO - Epoch [8/100], Loss: 0.5709, F1: 0.4063, Accuracy: 0.6276, Recall: 0.3403, Precision: 0.5042, FPR: 0.2003, FNR: 0.6597
+2025-06-09 22:47:36,097 - INFO - Epoch [9/100], Loss: 0.5987, F1: 0.6616, Accuracy: 0.7018, Recall: 0.7782, Precision: 0.5753, FPR: 0.3439, FNR: 0.2218
+2025-06-09 22:47:37,057 - INFO - Epoch [10/100], Loss: 0.5314, F1: 0.6051, Accuracy: 0.6766, Recall: 0.6616, Precision: 0.5575, FPR: 0.3144, FNR: 0.3384
+2025-06-09 22:47:38,023 - INFO - Epoch [11/100], Loss: 0.5371, F1: 0.5680, Accuracy: 0.7462, Recall: 0.4455, Precision: 0.7833, FPR: 0.0738, FNR: 0.5545
+2025-06-09 22:47:38,989 - INFO - Epoch [12/100], Loss: 0.4929, F1: 0.4652, Accuracy: 0.7355, Recall: 0.3071, Precision: 0.9586, FPR: 0.0079, FNR: 0.6929
+2025-06-09 22:47:39,953 - INFO - Epoch [13/100], Loss: 0.4775, F1: 0.6544, Accuracy: 0.7597, Recall: 0.6076, Precision: 0.7091, FPR: 0.1493, FNR: 0.3924
+2025-06-09 22:47:40,918 - INFO - Epoch [14/100], Loss: 0.5200, F1: 0.6492, Accuracy: 0.7284, Recall: 0.6711, Precision: 0.6288, FPR: 0.2372, FNR: 0.3289
+2025-06-09 22:47:41,881 - INFO - Epoch [15/100], Loss: 0.4430, F1: 0.6407, Accuracy: 0.6496, Recall: 0.8341, Precision: 0.5201, FPR: 0.4608, FNR: 0.1659
+2025-06-09 22:47:42,871 - INFO - Epoch [16/100], Loss: 0.4437, F1: 0.7009, Accuracy: 0.7913, Recall: 0.6531, Precision: 0.7563, FPR: 0.1260, FNR: 0.3469
+2025-06-09 22:47:43,856 - INFO - Epoch [17/100], Loss: 0.4321, F1: 0.6776, Accuracy: 0.7274, Recall: 0.7649, Precision: 0.6081, FPR: 0.2951, FNR: 0.2351
+2025-06-09 22:47:44,840 - INFO - Epoch [18/100], Loss: 0.4485, F1: 0.7150, Accuracy: 0.7909, Recall: 0.7005, Precision: 0.7302, FPR: 0.1549, FNR: 0.2995
+2025-06-09 22:47:45,812 - INFO - Epoch [19/100], Loss: 0.4011, F1: 0.7143, Accuracy: 0.7927, Recall: 0.6919, Precision: 0.7381, FPR: 0.1470, FNR: 0.3081
+2025-06-09 22:47:46,777 - INFO - Epoch [20/100], Loss: 0.3637, F1: 0.6918, Accuracy: 0.8168, Recall: 0.5488, Precision: 0.9354, FPR: 0.0227, FNR: 0.4512
+2025-06-09 22:47:47,748 - INFO - Epoch [21/100], Loss: 0.3750, F1: 0.7542, Accuracy: 0.8285, Recall: 0.7024, Precision: 0.8143, FPR: 0.0959, FNR: 0.2976
+2025-06-09 22:47:48,756 - INFO - Epoch [22/100], Loss: 0.3687, F1: 0.7098, Accuracy: 0.7614, Recall: 0.7791, Precision: 0.6519, FPR: 0.2491, FNR: 0.2209
+2025-06-09 22:47:49,766 - INFO - Epoch [23/100], Loss: 0.3984, F1: 0.6875, Accuracy: 0.8080, Recall: 0.5640, Precision: 0.8802, FPR: 0.0460, FNR: 0.4360
+2025-06-09 22:47:50,778 - INFO - Epoch [24/100], Loss: 0.3404, F1: 0.7842, Accuracy: 0.8566, Recall: 0.6957, Precision: 0.8984, FPR: 0.0471, FNR: 0.3043
+2025-06-09 22:47:51,782 - INFO - Epoch [25/100], Loss: 0.2981, F1: 0.7772, Accuracy: 0.8530, Recall: 0.6844, Precision: 0.8991, FPR: 0.0460, FNR: 0.3156
+2025-06-09 22:47:52,801 - INFO - Epoch [26/100], Loss: 0.3028, F1: 0.7989, Accuracy: 0.8502, Recall: 0.7943, Precision: 0.8035, FPR: 0.1163, FNR: 0.2057
+2025-06-09 22:47:53,827 - INFO - Epoch [27/100], Loss: 0.2762, F1: 0.7878, Accuracy: 0.8541, Recall: 0.7232, Precision: 0.8651, FPR: 0.0675, FNR: 0.2768
+2025-06-09 22:47:54,851 - INFO - Epoch [28/100], Loss: 0.2768, F1: 0.7902, Accuracy: 0.8420, Recall: 0.7943, Precision: 0.7861, FPR: 0.1294, FNR: 0.2057
+2025-06-09 22:47:55,866 - INFO - Epoch [29/100], Loss: 0.2944, F1: 0.6985, Accuracy: 0.7107, Recall: 0.8948, Precision: 0.5728, FPR: 0.3995, FNR: 0.1052
+2025-06-09 22:47:56,882 - INFO - Epoch [30/100], Loss: 0.3431, F1: 0.7772, Accuracy: 0.8392, Recall: 0.7488, Precision: 0.8078, FPR: 0.1067, FNR: 0.2512
+2025-06-09 22:47:57,884 - INFO - Epoch [31/100], Loss: 0.2657, F1: 0.7654, Accuracy: 0.8477, Recall: 0.6635, Precision: 0.9044, FPR: 0.0420, FNR: 0.3365
+2025-06-09 22:47:58,885 - INFO - Epoch [32/100], Loss: 0.2208, F1: 0.7937, Accuracy: 0.8548, Recall: 0.7460, Precision: 0.8481, FPR: 0.0800, FNR: 0.2540
+2025-06-09 22:47:59,892 - INFO - Epoch [33/100], Loss: 0.2039, F1: 0.8243, Accuracy: 0.8697, Recall: 0.8161, Precision: 0.8327, FPR: 0.0982, FNR: 0.1839
+2025-06-09 22:48:00,899 - INFO - Epoch [34/100], Loss: 0.1792, F1: 0.8147, Accuracy: 0.8587, Recall: 0.8294, Precision: 0.8005, FPR: 0.1237, FNR: 0.1706
+2025-06-09 22:48:01,897 - INFO - Epoch [35/100], Loss: 0.1748, F1: 0.8159, Accuracy: 0.8687, Recall: 0.7773, Precision: 0.8586, FPR: 0.0766, FNR: 0.2227
+2025-06-09 22:48:02,894 - INFO - Epoch [36/100], Loss: 0.1532, F1: 0.7981, Accuracy: 0.8520, Recall: 0.7810, Precision: 0.8158, FPR: 0.1056, FNR: 0.2190
+2025-06-09 22:48:03,896 - INFO - Epoch [37/100], Loss: 0.1505, F1: 0.8010, Accuracy: 0.8545, Recall: 0.7820, Precision: 0.8209, FPR: 0.1022, FNR: 0.2180
+2025-06-09 22:48:04,894 - INFO - Epoch [38/100], Loss: 0.1413, F1: 0.7612, Accuracy: 0.8140, Recall: 0.7915, Precision: 0.7331, FPR: 0.1725, FNR: 0.2085
+2025-06-09 22:48:05,894 - INFO - Epoch [39/100], Loss: 0.2118, F1: 0.8095, Accuracy: 0.8598, Recall: 0.7953, Precision: 0.8242, FPR: 0.1016, FNR: 0.2047
+2025-06-09 22:48:06,905 - INFO - Epoch [40/100], Loss: 0.1201, F1: 0.7892, Accuracy: 0.8530, Recall: 0.7346, Precision: 0.8526, FPR: 0.0760, FNR: 0.2654
+2025-06-09 22:48:07,907 - INFO - Epoch [41/100], Loss: 0.1045, F1: 0.7441, Accuracy: 0.7867, Recall: 0.8284, Precision: 0.6754, FPR: 0.2384, FNR: 0.1716
+2025-06-09 22:48:08,910 - INFO - Epoch [42/100], Loss: 0.2188, F1: 0.8056, Accuracy: 0.8662, Recall: 0.7403, Precision: 0.8835, FPR: 0.0585, FNR: 0.2597
+2025-06-09 22:48:09,917 - INFO - Epoch [43/100], Loss: 0.0980, F1: 0.8030, Accuracy: 0.8527, Recall: 0.8019, Precision: 0.8042, FPR: 0.1169, FNR: 0.1981
+2025-06-09 22:48:10,921 - INFO - Epoch [44/100], Loss: 0.0965, F1: 0.8048, Accuracy: 0.8616, Recall: 0.7621, Precision: 0.8526, FPR: 0.0789, FNR: 0.2379
+2025-06-09 22:48:11,930 - INFO - Epoch [45/100], Loss: 0.0694, F1: 0.7824, Accuracy: 0.8317, Recall: 0.8076, Precision: 0.7587, FPR: 0.1538, FNR: 0.1924
+2025-06-09 22:48:12,927 - INFO - Epoch [46/100], Loss: 0.0831, F1: 0.7974, Accuracy: 0.8541, Recall: 0.7668, Precision: 0.8306, FPR: 0.0936, FNR: 0.2332
+2025-06-09 22:48:13,918 - INFO - Epoch [47/100], Loss: 0.0556, F1: 0.8110, Accuracy: 0.8630, Recall: 0.7848, Precision: 0.8389, FPR: 0.0902, FNR: 0.2152
+2025-06-09 22:48:14,900 - INFO - Epoch [48/100], Loss: 0.0403, F1: 0.7951, Accuracy: 0.8506, Recall: 0.7744, Precision: 0.8170, FPR: 0.1039, FNR: 0.2256
+2025-06-09 22:48:15,891 - INFO - Epoch [49/100], Loss: 0.0368, F1: 0.7958, Accuracy: 0.8484, Recall: 0.7886, Precision: 0.8031, FPR: 0.1158, FNR: 0.2114
+2025-06-09 22:48:16,888 - INFO - Epoch [50/100], Loss: 0.0289, F1: 0.8100, Accuracy: 0.8619, Recall: 0.7858, Precision: 0.8357, FPR: 0.0925, FNR: 0.2142
+2025-06-09 22:48:17,876 - INFO - Epoch [51/100], Loss: 0.0186, F1: 0.7799, Accuracy: 0.8445, Recall: 0.7355, Precision: 0.8299, FPR: 0.0902, FNR: 0.2645
+2025-06-09 22:48:18,881 - INFO - Epoch [52/100], Loss: 0.0870, F1: 0.7879, Accuracy: 0.8356, Recall: 0.8152, Precision: 0.7624, FPR: 0.1521, FNR: 0.1848
+2025-06-09 22:48:19,893 - INFO - Epoch [53/100], Loss: 0.0395, F1: 0.8080, Accuracy: 0.8672, Recall: 0.7460, Precision: 0.8813, FPR: 0.0602, FNR: 0.2540
+2025-06-09 22:48:20,891 - INFO - Epoch [54/100], Loss: 0.0218, F1: 0.7974, Accuracy: 0.8474, Recall: 0.8019, Precision: 0.7929, FPR: 0.1254, FNR: 0.1981
+2025-06-09 22:48:21,875 - INFO - Epoch [55/100], Loss: 0.0088, F1: 0.8062, Accuracy: 0.8630, Recall: 0.7611, Precision: 0.8570, FPR: 0.0760, FNR: 0.2389
+2025-06-09 22:48:22,869 - INFO - Epoch [56/100], Loss: 0.0087, F1: 0.8052, Accuracy: 0.8576, Recall: 0.7858, Precision: 0.8257, FPR: 0.0993, FNR: 0.2142
+2025-06-09 22:48:23,848 - INFO - Epoch [57/100], Loss: 0.0063, F1: 0.8045, Accuracy: 0.8580, Recall: 0.7801, Precision: 0.8305, FPR: 0.0953, FNR: 0.2199
+2025-06-09 22:48:24,820 - INFO - Epoch [58/100], Loss: 0.0038, F1: 0.8055, Accuracy: 0.8605, Recall: 0.7716, Precision: 0.8427, FPR: 0.0863, FNR: 0.2284
+2025-06-09 22:48:25,796 - INFO - Epoch [59/100], Loss: 0.0029, F1: 0.8096, Accuracy: 0.8619, Recall: 0.7839, Precision: 0.8370, FPR: 0.0914, FNR: 0.2161
+2025-06-09 22:48:26,772 - INFO - Epoch [60/100], Loss: 0.0026, F1: 0.8050, Accuracy: 0.8573, Recall: 0.7867, Precision: 0.8242, FPR: 0.1005, FNR: 0.2133
+2025-06-09 22:48:27,742 - INFO - Epoch [61/100], Loss: 0.0023, F1: 0.8073, Accuracy: 0.8612, Recall: 0.7763, Precision: 0.8409, FPR: 0.0880, FNR: 0.2237
+2025-06-09 22:48:28,714 - INFO - Epoch [62/100], Loss: 0.0018, F1: 0.8092, Accuracy: 0.8619, Recall: 0.7820, Precision: 0.8384, FPR: 0.0902, FNR: 0.2180
+2025-06-09 22:48:29,681 - INFO - Epoch [63/100], Loss: 0.0016, F1: 0.8068, Accuracy: 0.8619, Recall: 0.7697, Precision: 0.8476, FPR: 0.0829, FNR: 0.2303
+2025-06-09 22:48:30,649 - INFO - Epoch [64/100], Loss: 0.0014, F1: 0.8121, Accuracy: 0.8633, Recall: 0.7886, Precision: 0.8370, FPR: 0.0919, FNR: 0.2114
+2025-06-09 22:48:31,621 - INFO - Epoch [65/100], Loss: 0.0012, F1: 0.8065, Accuracy: 0.8616, Recall: 0.7706, Precision: 0.8460, FPR: 0.0840, FNR: 0.2294
+2025-06-09 22:48:32,590 - INFO - Epoch [66/100], Loss: 0.0011, F1: 0.8041, Accuracy: 0.8562, Recall: 0.7877, Precision: 0.8211, FPR: 0.1027, FNR: 0.2123
+2025-06-09 22:48:33,561 - INFO - Epoch [67/100], Loss: 0.0010, F1: 0.8094, Accuracy: 0.8612, Recall: 0.7867, Precision: 0.8333, FPR: 0.0942, FNR: 0.2133
+2025-06-09 22:48:34,531 - INFO - Epoch [68/100], Loss: 0.0009, F1: 0.8102, Accuracy: 0.8619, Recall: 0.7867, Precision: 0.8350, FPR: 0.0931, FNR: 0.2133
+2025-06-09 22:48:35,506 - INFO - Epoch [69/100], Loss: 0.0008, F1: 0.8076, Accuracy: 0.8598, Recall: 0.7858, Precision: 0.8307, FPR: 0.0959, FNR: 0.2142
+2025-06-09 22:48:36,475 - INFO - Epoch [70/100], Loss: 0.0007, F1: 0.8083, Accuracy: 0.8623, Recall: 0.7754, Precision: 0.8442, FPR: 0.0857, FNR: 0.2246
+2025-06-09 22:48:37,446 - INFO - Epoch [71/100], Loss: 0.0006, F1: 0.8065, Accuracy: 0.8601, Recall: 0.7782, Precision: 0.8369, FPR: 0.0908, FNR: 0.2218
+2025-06-09 22:48:38,417 - INFO - Epoch [72/100], Loss: 0.0006, F1: 0.8049, Accuracy: 0.8594, Recall: 0.7744, Precision: 0.8379, FPR: 0.0897, FNR: 0.2256
+2025-06-09 22:48:39,389 - INFO - Epoch [73/100], Loss: 0.0005, F1: 0.8102, Accuracy: 0.8626, Recall: 0.7829, Precision: 0.8394, FPR: 0.0897, FNR: 0.2171
+2025-06-09 22:48:40,367 - INFO - Epoch [74/100], Loss: 0.0005, F1: 0.8094, Accuracy: 0.8616, Recall: 0.7848, Precision: 0.8355, FPR: 0.0925, FNR: 0.2152
+2025-06-09 22:48:41,349 - INFO - Epoch [75/100], Loss: 0.0005, F1: 0.8061, Accuracy: 0.8594, Recall: 0.7801, Precision: 0.8338, FPR: 0.0931, FNR: 0.2199
+2025-06-09 22:48:42,322 - INFO - Epoch [76/100], Loss: 0.0004, F1: 0.8094, Accuracy: 0.8616, Recall: 0.7848, Precision: 0.8355, FPR: 0.0925, FNR: 0.2152
+2025-06-09 22:48:43,300 - INFO - Epoch [77/100], Loss: 0.0004, F1: 0.8076, Accuracy: 0.8605, Recall: 0.7820, Precision: 0.8350, FPR: 0.0925, FNR: 0.2180
+2025-06-09 22:48:44,273 - INFO - Epoch [78/100], Loss: 0.0005, F1: 0.8058, Accuracy: 0.8580, Recall: 0.7867, Precision: 0.8259, FPR: 0.0993, FNR: 0.2133
+2025-06-09 22:48:45,248 - INFO - Epoch [79/100], Loss: 0.0004, F1: 0.8082, Accuracy: 0.8605, Recall: 0.7848, Precision: 0.8330, FPR: 0.0942, FNR: 0.2152
+2025-06-09 22:48:46,222 - INFO - Epoch [80/100], Loss: 0.0003, F1: 0.8100, Accuracy: 0.8626, Recall: 0.7820, Precision: 0.8401, FPR: 0.0891, FNR: 0.2180
+2025-06-09 22:48:47,197 - INFO - Epoch [81/100], Loss: 0.0003, F1: 0.8084, Accuracy: 0.8612, Recall: 0.7820, Precision: 0.8367, FPR: 0.0914, FNR: 0.2180
+2025-06-09 22:48:48,173 - INFO - Epoch [82/100], Loss: 0.3160, F1: 0.7566, Accuracy: 0.8225, Recall: 0.7365, Precision: 0.7778, FPR: 0.1260, FNR: 0.2635
+2025-06-09 22:48:49,148 - INFO - Epoch [83/100], Loss: 0.0783, F1: 0.8014, Accuracy: 0.8594, Recall: 0.7573, Precision: 0.8509, FPR: 0.0795, FNR: 0.2427
+2025-06-09 22:48:50,124 - INFO - Epoch [84/100], Loss: 0.0458, F1: 0.7864, Accuracy: 0.8438, Recall: 0.7678, Precision: 0.8060, FPR: 0.1107, FNR: 0.2322
+2025-06-09 22:48:51,105 - INFO - Epoch [85/100], Loss: 0.0348, F1: 0.7821, Accuracy: 0.8307, Recall: 0.8114, Precision: 0.7549, FPR: 0.1578, FNR: 0.1886
+2025-06-09 22:48:52,088 - INFO - Epoch [86/100], Loss: 0.0450, F1: 0.7692, Accuracy: 0.8214, Recall: 0.7943, Precision: 0.7456, FPR: 0.1623, FNR: 0.2057
+2025-06-09 22:48:53,089 - INFO - Epoch [87/100], Loss: 0.0274, F1: 0.8096, Accuracy: 0.8655, Recall: 0.7640, Precision: 0.8611, FPR: 0.0738, FNR: 0.2360
+2025-06-09 22:48:54,126 - INFO - Epoch [88/100], Loss: 0.0267, F1: 0.7992, Accuracy: 0.8523, Recall: 0.7848, Precision: 0.8142, FPR: 0.1073, FNR: 0.2152
+2025-06-09 22:48:55,154 - INFO - Epoch [89/100], Loss: 0.0112, F1: 0.8028, Accuracy: 0.8584, Recall: 0.7697, Precision: 0.8388, FPR: 0.0885, FNR: 0.2303
+2025-06-09 22:48:56,182 - INFO - Epoch [90/100], Loss: 0.0037, F1: 0.7982, Accuracy: 0.8548, Recall: 0.7668, Precision: 0.8323, FPR: 0.0925, FNR: 0.2332
+2025-06-09 22:48:57,186 - INFO - Epoch [91/100], Loss: 0.0025, F1: 0.8004, Accuracy: 0.8541, Recall: 0.7810, Precision: 0.8207, FPR: 0.1022, FNR: 0.2190
+2025-06-09 22:48:58,184 - INFO - Epoch [92/100], Loss: 0.0011, F1: 0.8082, Accuracy: 0.8605, Recall: 0.7848, Precision: 0.8330, FPR: 0.0942, FNR: 0.2152
+2025-06-09 22:48:59,190 - INFO - Epoch [93/100], Loss: 0.0008, F1: 0.8078, Accuracy: 0.8598, Recall: 0.7867, Precision: 0.8300, FPR: 0.0965, FNR: 0.2133
+2025-06-09 22:49:00,183 - INFO - Epoch [94/100], Loss: 0.0007, F1: 0.8049, Accuracy: 0.8584, Recall: 0.7801, Precision: 0.8313, FPR: 0.0948, FNR: 0.2199
+2025-06-09 22:49:01,159 - INFO - Epoch [95/100], Loss: 0.0006, F1: 0.8061, Accuracy: 0.8601, Recall: 0.7763, Precision: 0.8383, FPR: 0.0897, FNR: 0.2237
+2025-06-09 22:49:02,135 - INFO - Epoch [96/100], Loss: 0.0005, F1: 0.8065, Accuracy: 0.8598, Recall: 0.7801, Precision: 0.8347, FPR: 0.0925, FNR: 0.2199
+2025-06-09 22:49:03,110 - INFO - Epoch [97/100], Loss: 0.0005, F1: 0.8081, Accuracy: 0.8616, Recall: 0.7782, Precision: 0.8403, FPR: 0.0885, FNR: 0.2218
+2025-06-09 22:49:04,087 - INFO - Epoch [98/100], Loss: 0.0004, F1: 0.8065, Accuracy: 0.8612, Recall: 0.7725, Precision: 0.8437, FPR: 0.0857, FNR: 0.2275
+2025-06-09 22:49:05,060 - INFO - Epoch [99/100], Loss: 0.0004, F1: 0.8055, Accuracy: 0.8594, Recall: 0.7773, Precision: 0.8359, FPR: 0.0914, FNR: 0.2227
+2025-06-09 22:49:06,041 - INFO - Epoch [100/100], Loss: 0.0003, F1: 0.8045, Accuracy: 0.8584, Recall: 0.7782, Precision: 0.8327, FPR: 0.0936, FNR: 0.2218
+2025-06-09 22:49:06,041 - INFO - ---------------------------结束模型训练---------------------------
+2025-06-09 22:49:06,041 - INFO - 总共用时0:01:38.968128，平均用时 0:00:00.989681 /epoch
+2025-06-09 22:49:06,102 - INFO - 测试结果为：
+2025-06-09 22:49:06,102 - INFO - {'F1': 0.8045, 'Accuracy': 0.8584, 'Recall': 0.7782, 'Precision': 0.8327, 'FPR': np.float64(0.0936), 'FNR': np.float64(0.2218)}

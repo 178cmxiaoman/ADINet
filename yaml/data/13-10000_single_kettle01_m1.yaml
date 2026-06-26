@@ -1,0 +1,6 @@
+data:
+  U_path: "E:/AFCI/Datasets/IAED-processed/10000_single_kettle01_m1/U.csv"
+  I_path: "E:/AFCI/Datasets/IAED-processed/10000_single_kettle01_m1/I.csv"
+  label_path: "E:/AFCI/Datasets/IAED-processed/10000_single_kettle01_m1/label.csv"
+  window_size: 1000
+  sample_rate: 10000

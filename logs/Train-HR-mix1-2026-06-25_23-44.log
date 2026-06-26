@@ -1,0 +1,194 @@
+2026-06-25 23:44:29,704 - INFO - ---------------------------数据集描述---------------------------
+2026-06-25 23:44:29,704 - INFO - 训练数据集为HR-mix1
+2026-06-25 23:44:29,704 - INFO - 配置文件: /root/Projects/ArcFaultDetection/yaml/config/Transformer.yaml
+2026-06-25 23:44:29,704 - INFO - 训练流程: deep_learning
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/00-10000_multi_airconditioner02-refrigerator_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/01-10000_multi_kettle01-microwaveoven_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/02-10000_multi_refrigerator-airconditioner_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/03-10000_multi_ricecooker-electricoven_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/04-10000_multi_inductioncooker-airpurifier_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/05-10000_multi_airpurifier-airconditioner03_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/06-10000_multi_microwaveoven-waterheater_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/07-10000_multi_electricoven-washingmachine_m2.yaml
+2026-06-25 23:44:29,704 - INFO - Loading data from yaml/data/08-10000_multi_airconditioner01-inductioncooker_m2.yaml
+2026-06-25 23:44:34,616 - INFO - 数据读取完成，总共用时4.91 秒
+2026-06-25 23:44:34,617 - INFO - 使用 cuda 训练模型
+2026-06-25 23:44:36,169 - INFO - 使用 10000 的数据集, 窗口大小为 1000
+2026-06-25 23:44:36,169 - INFO - ---------------------------超参数设置---------------------------
+2026-06-25 23:44:36,169 - INFO - data_type: HR-mix1
+2026-06-25 23:44:36,169 - INFO - data_path: /root/Projects/Datasets/
+2026-06-25 23:44:36,169 - INFO - model: Transformer
+2026-06-25 23:44:36,169 - INFO - window_size: 1000
+2026-06-25 23:44:36,169 - INFO - epochs: 100
+2026-06-25 23:44:36,169 - INFO - batch_size: 256
+2026-06-25 23:44:36,169 - INFO - lr: 0.0005
+2026-06-25 23:44:36,170 - INFO - optimizer: Adam
+2026-06-25 23:44:36,170 - INFO - momentum: 0.9
+2026-06-25 23:44:36,170 - INFO - d_model: 64
+2026-06-25 23:44:36,170 - INFO - nhead: 4
+2026-06-25 23:44:36,170 - INFO - num_layers: 2
+2026-06-25 23:44:36,170 - INFO - dim_feedforward: 128
+2026-06-25 23:44:36,170 - INFO - dropout: 0.1
+2026-06-25 23:44:36,170 - INFO - n_runs: 50
+2026-06-25 23:44:36,170 - INFO - checkpoint_mode: last
+2026-06-25 23:44:36,170 - INFO - checkpoint_path: None
+2026-06-25 23:44:36,170 - INFO - model_save_format: full_model
+2026-06-25 23:44:36,170 - INFO - device: cuda
+2026-06-25 23:44:36,170 - INFO - log_interval: 1
+2026-06-25 23:44:36,170 - INFO - save_interval: 20
+2026-06-25 23:44:36,170 - INFO - save_path: /root/Projects/AFCI/checkpoints
+2026-06-25 23:44:36,170 - INFO - config: /root/Projects/ArcFaultDetection/yaml/config/Transformer.yaml
+2026-06-25 23:44:36,170 - INFO - pipeline: deep_learning
+2026-06-25 23:44:36,170 - INFO - ---------------------------模型结构---------------------------
+2026-06-25 23:44:36,170 - INFO - 模型参数量为：265306626
+2026-06-25 23:44:36,170 - INFO - TransformerModel(
+  (input_proj): Linear(in_features=1, out_features=256, bias=True)
+  (pos_encoder): PositionalEncoding()
+  (transformer_encoder): TransformerEncoder(
+    (layers): ModuleList(
+      (0-3): 4 x TransformerEncoderLayer(
+        (self_attn): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+        )
+        (linear1): Linear(in_features=256, out_features=1024, bias=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (linear2): Linear(in_features=1024, out_features=256, bias=True)
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.1, inplace=False)
+        (dropout2): Dropout(p=0.1, inplace=False)
+      )
+    )
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=256000, out_features=1024, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=1024, out_features=2, bias=True)
+  )
+)
+2026-06-25 23:44:36,171 - INFO - ---------------------------模型复杂度---------------------------
+2026-06-25 23:44:36,171 - WARNING - 未安装 thop，无法计算 MACs/FLOPs；请先安装 thop 后重试。
+2026-06-25 23:44:36,171 - INFO - 模型复杂度：Params: 265306626 (265.306626 M)
+2026-06-25 23:44:37,973 - INFO - ---------------------------开始模型训练---------------------------
+2026-06-25 23:45:12,303 - INFO - Epoch [1/100], Loss: 4.3773, Accuracy: 0.7820, Precision: 0.0000, Recall: 0.0000, F1: 0.0000, FalseAlarmRate: 0.0000, MissedDetectionRate: 1.0000, ROC-AUC: 0.5921, PR-AUC: 0.2681
+2026-06-25 23:45:14,659 - INFO - Best model updated at epoch 1, Accuracy: 0.7820
+2026-06-25 23:45:51,172 - INFO - Epoch [2/100], Loss: 0.5149, Accuracy: 0.7820, Precision: 0.0000, Recall: 0.0000, F1: 0.0000, FalseAlarmRate: 0.0000, MissedDetectionRate: 1.0000, ROC-AUC: 0.6426, PR-AUC: 0.3273
+2026-06-25 23:46:27,854 - INFO - Epoch [3/100], Loss: 0.5198, Accuracy: 0.7820, Precision: 0.0000, Recall: 0.0000, F1: 0.0000, FalseAlarmRate: 0.0000, MissedDetectionRate: 1.0000, ROC-AUC: 0.6758, PR-AUC: 0.4138
+2026-06-25 23:47:04,587 - INFO - Epoch [4/100], Loss: 0.4807, Accuracy: 0.7804, Precision: 0.4953, Recall: 0.3753, F1: 0.4270, FalseAlarmRate: 0.1066, MissedDetectionRate: 0.6247, ROC-AUC: 0.7580, PR-AUC: 0.4297
+2026-06-25 23:47:40,754 - INFO - Epoch [5/100], Loss: 0.4637, Accuracy: 0.8074, Precision: 0.9385, Recall: 0.1247, F1: 0.2202, FalseAlarmRate: 0.0023, MissedDetectionRate: 0.8753, ROC-AUC: 0.7869, PR-AUC: 0.5509
+2026-06-25 23:47:43,054 - INFO - Best model updated at epoch 5, Accuracy: 0.8074
+2026-06-25 23:48:19,722 - INFO - Epoch [6/100], Loss: 0.4499, Accuracy: 0.8221, Precision: 0.9286, Recall: 0.1994, F1: 0.3283, FalseAlarmRate: 0.0043, MissedDetectionRate: 0.8006, ROC-AUC: 0.7997, PR-AUC: 0.5919
+2026-06-25 23:48:21,531 - INFO - Best model updated at epoch 6, Accuracy: 0.8221
+2026-06-25 23:48:58,227 - INFO - Epoch [7/100], Loss: 0.4276, Accuracy: 0.8185, Precision: 0.9271, Recall: 0.1820, F1: 0.3043, FalseAlarmRate: 0.0040, MissedDetectionRate: 0.8180, ROC-AUC: 0.8024, PR-AUC: 0.5980
+2026-06-25 23:49:34,948 - INFO - Epoch [8/100], Loss: 0.4323, Accuracy: 0.8252, Precision: 0.7539, Recall: 0.2945, F1: 0.4235, FalseAlarmRate: 0.0268, MissedDetectionRate: 0.7055, ROC-AUC: 0.8209, PR-AUC: 0.5814
+2026-06-25 23:49:37,336 - INFO - Best model updated at epoch 8, Accuracy: 0.8252
+2026-06-25 23:50:14,018 - INFO - Epoch [9/100], Loss: 0.4123, Accuracy: 0.7824, Precision: 0.5007, Recall: 0.7168, F1: 0.5896, FalseAlarmRate: 0.1993, MissedDetectionRate: 0.2832, ROC-AUC: 0.8276, PR-AUC: 0.4996
+2026-06-25 23:50:50,178 - INFO - Epoch [10/100], Loss: 0.4073, Accuracy: 0.7111, Precision: 0.4200, Recall: 0.8538, F1: 0.5630, FalseAlarmRate: 0.3287, MissedDetectionRate: 0.1462, ROC-AUC: 0.8023, PR-AUC: 0.4311
+2026-06-25 23:51:26,904 - INFO - Epoch [11/100], Loss: 0.4048, Accuracy: 0.8268, Precision: 0.7506, Recall: 0.3078, F1: 0.4365, FalseAlarmRate: 0.0285, MissedDetectionRate: 0.6922, ROC-AUC: 0.8542, PR-AUC: 0.6278
+2026-06-25 23:51:29,201 - INFO - Best model updated at epoch 11, Accuracy: 0.8268
+2026-06-25 23:52:05,882 - INFO - Epoch [12/100], Loss: 0.3754, Accuracy: 0.8346, Precision: 0.8598, Recall: 0.2883, F1: 0.4319, FalseAlarmRate: 0.0131, MissedDetectionRate: 0.7117, ROC-AUC: 0.8717, PR-AUC: 0.6805
+2026-06-25 23:52:08,178 - INFO - Best model updated at epoch 12, Accuracy: 0.8346
+2026-06-25 23:52:44,910 - INFO - Epoch [13/100], Loss: 0.3553, Accuracy: 0.8622, Precision: 0.7350, Recall: 0.5757, F1: 0.6456, FalseAlarmRate: 0.0579, MissedDetectionRate: 0.4243, ROC-AUC: 0.8835, PR-AUC: 0.7037
+2026-06-25 23:52:47,214 - INFO - Best model updated at epoch 13, Accuracy: 0.8622
+2026-06-25 23:53:23,927 - INFO - Epoch [14/100], Loss: 0.3318, Accuracy: 0.8573, Precision: 0.7761, Recall: 0.4857, F1: 0.5975, FalseAlarmRate: 0.0391, MissedDetectionRate: 0.5143, ROC-AUC: 0.8623, PR-AUC: 0.6918
+2026-06-25 23:54:00,688 - INFO - Epoch [15/100], Loss: 0.3274, Accuracy: 0.7742, Precision: 0.4897, Recall: 0.8538, F1: 0.6224, FalseAlarmRate: 0.2480, MissedDetectionRate: 0.1462, ROC-AUC: 0.8815, PR-AUC: 0.7027
+2026-06-25 23:54:36,905 - INFO - Epoch [16/100], Loss: 0.3206, Accuracy: 0.8266, Precision: 0.5737, Recall: 0.7955, F1: 0.6667, FalseAlarmRate: 0.1648, MissedDetectionRate: 0.2045, ROC-AUC: 0.9035, PR-AUC: 0.7451
+2026-06-25 23:55:13,691 - INFO - Epoch [17/100], Loss: 0.3055, Accuracy: 0.8622, Precision: 0.8346, Recall: 0.4591, F1: 0.5923, FalseAlarmRate: 0.0254, MissedDetectionRate: 0.5409, ROC-AUC: 0.9139, PR-AUC: 0.7742
+2026-06-25 23:55:50,476 - INFO - Epoch [18/100], Loss: 0.3018, Accuracy: 0.8758, Precision: 0.7095, Recall: 0.7290, F1: 0.7191, FalseAlarmRate: 0.0832, MissedDetectionRate: 0.2710, ROC-AUC: 0.9192, PR-AUC: 0.7909
+2026-06-25 23:55:52,249 - INFO - Best model updated at epoch 18, Accuracy: 0.8758
+2026-06-25 23:56:29,026 - INFO - Epoch [19/100], Loss: 0.2898, Accuracy: 0.8219, Precision: 0.5588, Recall: 0.8691, F1: 0.6803, FalseAlarmRate: 0.1913, MissedDetectionRate: 0.1309, ROC-AUC: 0.9285, PR-AUC: 0.8223
+2026-06-25 23:57:05,807 - INFO - Epoch [20/100], Loss: 0.2907, Accuracy: 0.8685, Precision: 0.8089, Recall: 0.5194, F1: 0.6326, FalseAlarmRate: 0.0342, MissedDetectionRate: 0.4806, ROC-AUC: 0.9010, PR-AUC: 0.7659
+2026-06-25 23:57:43,648 - INFO - Epoch [21/100], Loss: 0.2747, Accuracy: 0.8569, Precision: 0.9468, Recall: 0.3640, F1: 0.5258, FalseAlarmRate: 0.0057, MissedDetectionRate: 0.6360, ROC-AUC: 0.9307, PR-AUC: 0.8269
+2026-06-25 23:58:19,894 - INFO - Epoch [22/100], Loss: 0.2586, Accuracy: 0.8848, Precision: 0.8874, Recall: 0.5399, F1: 0.6713, FalseAlarmRate: 0.0191, MissedDetectionRate: 0.4601, ROC-AUC: 0.9392, PR-AUC: 0.8392
+2026-06-25 23:58:22,686 - INFO - Best model updated at epoch 22, Accuracy: 0.8848
+2026-06-25 23:58:59,380 - INFO - Epoch [23/100], Loss: 0.2698, Accuracy: 0.8696, Precision: 0.8816, Recall: 0.4642, F1: 0.6082, FalseAlarmRate: 0.0174, MissedDetectionRate: 0.5358, ROC-AUC: 0.9287, PR-AUC: 0.8114
+2026-06-25 23:59:36,541 - INFO - Epoch [24/100], Loss: 0.2738, Accuracy: 0.9102, Precision: 0.8042, Recall: 0.7771, F1: 0.7904, FalseAlarmRate: 0.0527, MissedDetectionRate: 0.2229, ROC-AUC: 0.9499, PR-AUC: 0.8641
+2026-06-25 23:59:38,876 - INFO - Best model updated at epoch 24, Accuracy: 0.9102
+2026-06-26 00:00:15,590 - INFO - Epoch [25/100], Loss: 0.2456, Accuracy: 0.8680, Precision: 0.9038, Recall: 0.4417, F1: 0.5934, FalseAlarmRate: 0.0131, MissedDetectionRate: 0.5583, ROC-AUC: 0.9051, PR-AUC: 0.7818
+2026-06-26 00:00:52,406 - INFO - Epoch [26/100], Loss: 0.2357, Accuracy: 0.7334, Precision: 0.4459, Recall: 0.9182, F1: 0.6003, FalseAlarmRate: 0.3181, MissedDetectionRate: 0.0818, ROC-AUC: 0.9128, PR-AUC: 0.7875
+2026-06-26 00:01:29,243 - INFO - Epoch [27/100], Loss: 0.2997, Accuracy: 0.7530, Precision: 0.4669, Recall: 0.9387, F1: 0.6236, FalseAlarmRate: 0.2987, MissedDetectionRate: 0.0613, ROC-AUC: 0.9079, PR-AUC: 0.7473
+2026-06-26 00:02:06,337 - INFO - Epoch [28/100], Loss: 0.2641, Accuracy: 0.8573, Precision: 0.6786, Recall: 0.6564, F1: 0.6674, FalseAlarmRate: 0.0867, MissedDetectionRate: 0.3436, ROC-AUC: 0.9095, PR-AUC: 0.7547
+2026-06-26 00:02:43,102 - INFO - Epoch [29/100], Loss: 0.2280, Accuracy: 0.8856, Precision: 0.8627, Recall: 0.5654, F1: 0.6831, FalseAlarmRate: 0.0251, MissedDetectionRate: 0.4346, ROC-AUC: 0.9249, PR-AUC: 0.8157
+2026-06-26 00:03:19,912 - INFO - Epoch [30/100], Loss: 0.2137, Accuracy: 0.8754, Precision: 0.7217, Recall: 0.6973, F1: 0.7093, FalseAlarmRate: 0.0750, MissedDetectionRate: 0.3027, ROC-AUC: 0.9328, PR-AUC: 0.8077
+2026-06-26 00:03:56,252 - INFO - Epoch [31/100], Loss: 0.1858, Accuracy: 0.8306, Precision: 0.8949, Recall: 0.2526, F1: 0.3939, FalseAlarmRate: 0.0083, MissedDetectionRate: 0.7474, ROC-AUC: 0.8259, PR-AUC: 0.6252
+2026-06-26 00:04:33,042 - INFO - Epoch [32/100], Loss: 0.4405, Accuracy: 0.8192, Precision: 0.9718, Recall: 0.1759, F1: 0.2978, FalseAlarmRate: 0.0014, MissedDetectionRate: 0.8241, ROC-AUC: 0.8680, PR-AUC: 0.6888
+2026-06-26 00:05:09,830 - INFO - Epoch [33/100], Loss: 0.3524, Accuracy: 0.8660, Precision: 0.8026, Recall: 0.5112, F1: 0.6246, FalseAlarmRate: 0.0351, MissedDetectionRate: 0.4888, ROC-AUC: 0.8986, PR-AUC: 0.7476
+2026-06-26 00:05:46,611 - INFO - Epoch [34/100], Loss: 0.2829, Accuracy: 0.8179, Precision: 0.5562, Recall: 0.8149, F1: 0.6611, FalseAlarmRate: 0.1813, MissedDetectionRate: 0.1851, ROC-AUC: 0.9069, PR-AUC: 0.7581
+2026-06-26 00:06:23,380 - INFO - Epoch [35/100], Loss: 0.2506, Accuracy: 0.8235, Precision: 0.5644, Recall: 0.8333, F1: 0.6730, FalseAlarmRate: 0.1793, MissedDetectionRate: 0.1667, ROC-AUC: 0.9206, PR-AUC: 0.8022
+2026-06-26 00:07:00,127 - INFO - Epoch [36/100], Loss: 0.2837, Accuracy: 0.7472, Precision: 0.4615, Recall: 0.9571, F1: 0.6228, FalseAlarmRate: 0.3113, MissedDetectionRate: 0.0429, ROC-AUC: 0.9317, PR-AUC: 0.8323
+2026-06-26 00:07:36,887 - INFO - Epoch [37/100], Loss: 0.2410, Accuracy: 0.8636, Precision: 0.6412, Recall: 0.8497, F1: 0.7309, FalseAlarmRate: 0.1326, MissedDetectionRate: 0.1503, ROC-AUC: 0.9406, PR-AUC: 0.8687
+2026-06-26 00:08:13,641 - INFO - Epoch [38/100], Loss: 0.2200, Accuracy: 0.8281, Precision: 0.5690, Recall: 0.8722, F1: 0.6887, FalseAlarmRate: 0.1842, MissedDetectionRate: 0.1278, ROC-AUC: 0.9283, PR-AUC: 0.8290
+2026-06-26 00:08:50,379 - INFO - Epoch [39/100], Loss: 0.2931, Accuracy: 0.8562, Precision: 0.6781, Recall: 0.6483, F1: 0.6628, FalseAlarmRate: 0.0858, MissedDetectionRate: 0.3517, ROC-AUC: 0.9010, PR-AUC: 0.7736
+2026-06-26 00:09:26,561 - INFO - Epoch [40/100], Loss: 0.2611, Accuracy: 0.9008, Precision: 0.9020, Recall: 0.6115, F1: 0.7288, FalseAlarmRate: 0.0185, MissedDetectionRate: 0.3885, ROC-AUC: 0.9447, PR-AUC: 0.8517
+2026-06-26 00:10:04,344 - INFO - Epoch [41/100], Loss: 0.2317, Accuracy: 0.8729, Precision: 0.7494, Recall: 0.6268, F1: 0.6826, FalseAlarmRate: 0.0584, MissedDetectionRate: 0.3732, ROC-AUC: 0.9132, PR-AUC: 0.7783
+2026-06-26 00:10:41,695 - INFO - Epoch [42/100], Loss: 0.2260, Accuracy: 0.8680, Precision: 0.7789, Recall: 0.5511, F1: 0.6455, FalseAlarmRate: 0.0436, MissedDetectionRate: 0.4489, ROC-AUC: 0.9154, PR-AUC: 0.7858
+2026-06-26 00:11:17,860 - INFO - Epoch [43/100], Loss: 0.2032, Accuracy: 0.8542, Precision: 0.7321, Recall: 0.5225, F1: 0.6098, FalseAlarmRate: 0.0533, MissedDetectionRate: 0.4775, ROC-AUC: 0.9137, PR-AUC: 0.7681
+2026-06-26 00:11:54,580 - INFO - Epoch [44/100], Loss: 0.1952, Accuracy: 0.8763, Precision: 0.8362, Recall: 0.5378, F1: 0.6546, FalseAlarmRate: 0.0294, MissedDetectionRate: 0.4622, ROC-AUC: 0.8561, PR-AUC: 0.7465
+2026-06-26 00:12:31,651 - INFO - Epoch [45/100], Loss: 0.2001, Accuracy: 0.8807, Precision: 0.9743, Recall: 0.4652, F1: 0.6298, FalseAlarmRate: 0.0034, MissedDetectionRate: 0.5348, ROC-AUC: 0.9484, PR-AUC: 0.8758
+2026-06-26 00:13:08,379 - INFO - Epoch [46/100], Loss: 0.1948, Accuracy: 0.8810, Precision: 0.7382, Recall: 0.7035, F1: 0.7204, FalseAlarmRate: 0.0696, MissedDetectionRate: 0.2965, ROC-AUC: 0.9361, PR-AUC: 0.8394
+2026-06-26 00:13:44,540 - INFO - Epoch [47/100], Loss: 0.1702, Accuracy: 0.8489, Precision: 0.6106, Recall: 0.8466, F1: 0.7095, FalseAlarmRate: 0.1505, MissedDetectionRate: 0.1534, ROC-AUC: 0.9388, PR-AUC: 0.8575
+2026-06-26 00:14:21,662 - INFO - Epoch [48/100], Loss: 0.1718, Accuracy: 0.9333, Precision: 0.8971, Recall: 0.7843, F1: 0.8369, FalseAlarmRate: 0.0251, MissedDetectionRate: 0.2157, ROC-AUC: 0.9654, PR-AUC: 0.9131
+2026-06-26 00:14:23,958 - INFO - Best model updated at epoch 48, Accuracy: 0.9333
+2026-06-26 00:15:00,627 - INFO - Epoch [49/100], Loss: 0.1625, Accuracy: 0.9099, Precision: 0.9674, Recall: 0.6074, F1: 0.7462, FalseAlarmRate: 0.0057, MissedDetectionRate: 0.3926, ROC-AUC: 0.9568, PR-AUC: 0.8905
+2026-06-26 00:15:37,398 - INFO - Epoch [50/100], Loss: 0.1511, Accuracy: 0.8946, Precision: 0.9346, Recall: 0.5552, F1: 0.6966, FalseAlarmRate: 0.0108, MissedDetectionRate: 0.4448, ROC-AUC: 0.9528, PR-AUC: 0.8728
+2026-06-26 00:16:13,650 - INFO - Epoch [51/100], Loss: 0.1738, Accuracy: 0.9351, Precision: 0.9225, Recall: 0.7669, F1: 0.8375, FalseAlarmRate: 0.0180, MissedDetectionRate: 0.2331, ROC-AUC: 0.9707, PR-AUC: 0.9212
+2026-06-26 00:16:15,950 - INFO - Best model updated at epoch 51, Accuracy: 0.9351
+2026-06-26 00:16:52,620 - INFO - Epoch [52/100], Loss: 0.1715, Accuracy: 0.9231, Precision: 0.8407, Recall: 0.7986, F1: 0.8191, FalseAlarmRate: 0.0422, MissedDetectionRate: 0.2014, ROC-AUC: 0.9634, PR-AUC: 0.9006
+2026-06-26 00:17:29,329 - INFO - Epoch [53/100], Loss: 0.1728, Accuracy: 0.9362, Precision: 0.8941, Recall: 0.8027, F1: 0.8459, FalseAlarmRate: 0.0265, MissedDetectionRate: 0.1973, ROC-AUC: 0.9683, PR-AUC: 0.9148
+2026-06-26 00:17:31,625 - INFO - Best model updated at epoch 53, Accuracy: 0.9362
+2026-06-26 00:18:08,313 - INFO - Epoch [54/100], Loss: 0.1283, Accuracy: 0.8952, Precision: 0.7960, Recall: 0.6984, F1: 0.7440, FalseAlarmRate: 0.0499, MissedDetectionRate: 0.3016, ROC-AUC: 0.9364, PR-AUC: 0.8487
+2026-06-26 00:18:45,051 - INFO - Epoch [55/100], Loss: 0.1513, Accuracy: 0.9311, Precision: 0.9186, Recall: 0.7505, F1: 0.8261, FalseAlarmRate: 0.0185, MissedDetectionRate: 0.2495, ROC-AUC: 0.9681, PR-AUC: 0.9148
+2026-06-26 00:19:21,786 - INFO - Epoch [56/100], Loss: 0.1601, Accuracy: 0.9333, Precision: 0.9632, Recall: 0.7219, F1: 0.8252, FalseAlarmRate: 0.0077, MissedDetectionRate: 0.2781, ROC-AUC: 0.9775, PR-AUC: 0.9357
+2026-06-26 00:19:57,970 - INFO - Epoch [57/100], Loss: 0.1405, Accuracy: 0.9097, Precision: 0.7705, Recall: 0.8344, F1: 0.8012, FalseAlarmRate: 0.0693, MissedDetectionRate: 0.1656, ROC-AUC: 0.9612, PR-AUC: 0.8876
+2026-06-26 00:20:34,694 - INFO - Epoch [58/100], Loss: 0.1305, Accuracy: 0.8865, Precision: 0.9165, Recall: 0.5276, F1: 0.6697, FalseAlarmRate: 0.0134, MissedDetectionRate: 0.4724, ROC-AUC: 0.9065, PR-AUC: 0.8069
+2026-06-26 00:21:11,453 - INFO - Epoch [59/100], Loss: 0.1289, Accuracy: 0.9024, Precision: 0.9180, Recall: 0.6063, F1: 0.7303, FalseAlarmRate: 0.0151, MissedDetectionRate: 0.3937, ROC-AUC: 0.9191, PR-AUC: 0.8394
+2026-06-26 00:21:48,173 - INFO - Epoch [60/100], Loss: 0.1408, Accuracy: 0.9162, Precision: 0.8367, Recall: 0.7648, F1: 0.7991, FalseAlarmRate: 0.0416, MissedDetectionRate: 0.2352, ROC-AUC: 0.9577, PR-AUC: 0.8923
+2026-06-26 00:22:26,533 - INFO - Epoch [61/100], Loss: 0.1218, Accuracy: 0.8912, Precision: 0.8393, Recall: 0.6196, F1: 0.7129, FalseAlarmRate: 0.0331, MissedDetectionRate: 0.3804, ROC-AUC: 0.9316, PR-AUC: 0.8366
+2026-06-26 00:23:03,246 - INFO - Epoch [62/100], Loss: 0.1225, Accuracy: 0.9026, Precision: 0.9246, Recall: 0.6022, F1: 0.7294, FalseAlarmRate: 0.0137, MissedDetectionRate: 0.3978, ROC-AUC: 0.9369, PR-AUC: 0.8600
+2026-06-26 00:23:39,971 - INFO - Epoch [63/100], Loss: 0.1219, Accuracy: 0.9119, Precision: 0.8999, Recall: 0.6708, F1: 0.7686, FalseAlarmRate: 0.0208, MissedDetectionRate: 0.3292, ROC-AUC: 0.9459, PR-AUC: 0.8742
+2026-06-26 00:24:16,696 - INFO - Epoch [64/100], Loss: 0.1721, Accuracy: 0.9351, Precision: 0.9574, Recall: 0.7352, F1: 0.8317, FalseAlarmRate: 0.0091, MissedDetectionRate: 0.2648, ROC-AUC: 0.9745, PR-AUC: 0.9328
+2026-06-26 00:24:53,418 - INFO - Epoch [65/100], Loss: 0.1406, Accuracy: 0.9296, Precision: 0.8258, Recall: 0.8579, F1: 0.8415, FalseAlarmRate: 0.0505, MissedDetectionRate: 0.1421, ROC-AUC: 0.9754, PR-AUC: 0.9331
+2026-06-26 00:25:30,148 - INFO - Epoch [66/100], Loss: 0.1192, Accuracy: 0.9331, Precision: 0.8324, Recall: 0.8681, F1: 0.8498, FalseAlarmRate: 0.0487, MissedDetectionRate: 0.1319, ROC-AUC: 0.9796, PR-AUC: 0.9402
+2026-06-26 00:26:06,815 - INFO - Epoch [67/100], Loss: 0.1365, Accuracy: 0.9097, Precision: 0.9498, Recall: 0.6186, F1: 0.7492, FalseAlarmRate: 0.0091, MissedDetectionRate: 0.3814, ROC-AUC: 0.9711, PR-AUC: 0.9162
+2026-06-26 00:26:43,071 - INFO - Epoch [68/100], Loss: 0.1716, Accuracy: 0.9166, Precision: 0.9339, Recall: 0.6646, F1: 0.7766, FalseAlarmRate: 0.0131, MissedDetectionRate: 0.3354, ROC-AUC: 0.9538, PR-AUC: 0.8941
+2026-06-26 00:27:19,787 - INFO - Epoch [69/100], Loss: 0.1293, Accuracy: 0.8792, Precision: 0.7396, Recall: 0.6881, F1: 0.7129, FalseAlarmRate: 0.0676, MissedDetectionRate: 0.3119, ROC-AUC: 0.9338, PR-AUC: 0.8336
+2026-06-26 00:27:56,506 - INFO - Epoch [70/100], Loss: 0.1133, Accuracy: 0.8959, Precision: 0.7967, Recall: 0.7014, F1: 0.7461, FalseAlarmRate: 0.0499, MissedDetectionRate: 0.2986, ROC-AUC: 0.9427, PR-AUC: 0.8514
+2026-06-26 00:28:32,658 - INFO - Epoch [71/100], Loss: 0.1093, Accuracy: 0.9001, Precision: 0.7583, Recall: 0.7955, F1: 0.7764, FalseAlarmRate: 0.0707, MissedDetectionRate: 0.2045, ROC-AUC: 0.9536, PR-AUC: 0.8669
+2026-06-26 00:29:09,564 - INFO - Epoch [72/100], Loss: 0.1415, Accuracy: 0.9017, Precision: 0.8633, Recall: 0.6524, F1: 0.7432, FalseAlarmRate: 0.0288, MissedDetectionRate: 0.3476, ROC-AUC: 0.9431, PR-AUC: 0.8635
+2026-06-26 00:29:46,282 - INFO - Epoch [73/100], Loss: 0.1160, Accuracy: 0.8897, Precision: 0.8053, Recall: 0.6513, F1: 0.7202, FalseAlarmRate: 0.0439, MissedDetectionRate: 0.3487, ROC-AUC: 0.9151, PR-AUC: 0.8280
+2026-06-26 00:30:22,445 - INFO - Epoch [74/100], Loss: 0.1338, Accuracy: 0.9387, Precision: 0.9190, Recall: 0.7883, F1: 0.8487, FalseAlarmRate: 0.0194, MissedDetectionRate: 0.2117, ROC-AUC: 0.9764, PR-AUC: 0.9353
+2026-06-26 00:30:24,224 - INFO - Best model updated at epoch 74, Accuracy: 0.9387
+2026-06-26 00:31:00,874 - INFO - Epoch [75/100], Loss: 0.1060, Accuracy: 0.9173, Precision: 0.9392, Recall: 0.6636, F1: 0.7777, FalseAlarmRate: 0.0120, MissedDetectionRate: 0.3364, ROC-AUC: 0.9645, PR-AUC: 0.9114
+2026-06-26 00:31:37,586 - INFO - Epoch [76/100], Loss: 0.1075, Accuracy: 0.9302, Precision: 0.9172, Recall: 0.7474, F1: 0.8237, FalseAlarmRate: 0.0188, MissedDetectionRate: 0.2526, ROC-AUC: 0.9712, PR-AUC: 0.9241
+2026-06-26 00:32:14,298 - INFO - Epoch [77/100], Loss: 0.1201, Accuracy: 0.9362, Precision: 0.9023, Recall: 0.7935, F1: 0.8444, FalseAlarmRate: 0.0239, MissedDetectionRate: 0.2065, ROC-AUC: 0.9708, PR-AUC: 0.9226
+2026-06-26 00:32:51,001 - INFO - Epoch [78/100], Loss: 0.1102, Accuracy: 0.9329, Precision: 0.9184, Recall: 0.7597, F1: 0.8316, FalseAlarmRate: 0.0188, MissedDetectionRate: 0.2403, ROC-AUC: 0.9677, PR-AUC: 0.9223
+2026-06-26 00:33:27,706 - INFO - Epoch [79/100], Loss: 0.1053, Accuracy: 0.9249, Precision: 0.9495, Recall: 0.6922, F1: 0.8007, FalseAlarmRate: 0.0103, MissedDetectionRate: 0.3078, ROC-AUC: 0.9675, PR-AUC: 0.9158
+2026-06-26 00:34:04,418 - INFO - Epoch [80/100], Loss: 0.1766, Accuracy: 0.8823, Precision: 0.7961, Recall: 0.6186, F1: 0.6962, FalseAlarmRate: 0.0442, MissedDetectionRate: 0.3814, ROC-AUC: 0.9057, PR-AUC: 0.7971
+2026-06-26 00:34:42,908 - INFO - Epoch [81/100], Loss: 0.1867, Accuracy: 0.8308, Precision: 0.6030, Recall: 0.6554, F1: 0.6281, FalseAlarmRate: 0.1203, MissedDetectionRate: 0.3446, ROC-AUC: 0.8891, PR-AUC: 0.7388
+2026-06-26 00:35:19,573 - INFO - Epoch [82/100], Loss: 0.1559, Accuracy: 0.9055, Precision: 0.9425, Recall: 0.6033, F1: 0.7357, FalseAlarmRate: 0.0103, MissedDetectionRate: 0.3967, ROC-AUC: 0.9405, PR-AUC: 0.8572
+2026-06-26 00:35:56,276 - INFO - Epoch [83/100], Loss: 0.1133, Accuracy: 0.8839, Precision: 0.7685, Recall: 0.6687, F1: 0.7151, FalseAlarmRate: 0.0562, MissedDetectionRate: 0.3313, ROC-AUC: 0.9140, PR-AUC: 0.8201
+2026-06-26 00:36:32,427 - INFO - Epoch [84/100], Loss: 0.0947, Accuracy: 0.9403, Precision: 0.9196, Recall: 0.7955, F1: 0.8531, FalseAlarmRate: 0.0194, MissedDetectionRate: 0.2045, ROC-AUC: 0.9765, PR-AUC: 0.9340
+2026-06-26 00:36:34,743 - INFO - Best model updated at epoch 84, Accuracy: 0.9403
+2026-06-26 00:37:11,394 - INFO - Epoch [85/100], Loss: 0.1101, Accuracy: 0.9073, Precision: 0.9418, Recall: 0.6125, F1: 0.7423, FalseAlarmRate: 0.0105, MissedDetectionRate: 0.3875, ROC-AUC: 0.9320, PR-AUC: 0.8566
+2026-06-26 00:37:48,086 - INFO - Epoch [86/100], Loss: 0.1014, Accuracy: 0.8899, Precision: 0.7930, Recall: 0.6697, F1: 0.7262, FalseAlarmRate: 0.0487, MissedDetectionRate: 0.3303, ROC-AUC: 0.9283, PR-AUC: 0.8293
+2026-06-26 00:38:24,255 - INFO - Epoch [87/100], Loss: 0.1233, Accuracy: 0.9091, Precision: 0.8780, Recall: 0.6769, F1: 0.7644, FalseAlarmRate: 0.0262, MissedDetectionRate: 0.3231, ROC-AUC: 0.9511, PR-AUC: 0.8782
+2026-06-26 00:39:00,960 - INFO - Epoch [88/100], Loss: 0.1073, Accuracy: 0.9224, Precision: 0.8814, Recall: 0.7444, F1: 0.8071, FalseAlarmRate: 0.0279, MissedDetectionRate: 0.2556, ROC-AUC: 0.9653, PR-AUC: 0.9065
+2026-06-26 00:39:37,694 - INFO - Epoch [89/100], Loss: 0.1109, Accuracy: 0.9229, Precision: 0.9247, Recall: 0.7035, F1: 0.7991, FalseAlarmRate: 0.0160, MissedDetectionRate: 0.2965, ROC-AUC: 0.9596, PR-AUC: 0.9015
+2026-06-26 00:40:15,086 - INFO - Epoch [90/100], Loss: 0.0890, Accuracy: 0.9206, Precision: 0.9180, Recall: 0.6984, F1: 0.7933, FalseAlarmRate: 0.0174, MissedDetectionRate: 0.3016, ROC-AUC: 0.9637, PR-AUC: 0.9038
+2026-06-26 00:40:51,827 - INFO - Epoch [91/100], Loss: 0.1160, Accuracy: 0.9209, Precision: 0.8601, Recall: 0.7607, F1: 0.8074, FalseAlarmRate: 0.0345, MissedDetectionRate: 0.2393, ROC-AUC: 0.9568, PR-AUC: 0.8998
+2026-06-26 00:41:28,562 - INFO - Epoch [92/100], Loss: 0.1100, Accuracy: 0.9215, Precision: 0.9013, Recall: 0.7188, F1: 0.7998, FalseAlarmRate: 0.0219, MissedDetectionRate: 0.2812, ROC-AUC: 0.9584, PR-AUC: 0.9021
+2026-06-26 00:42:05,298 - INFO - Epoch [93/100], Loss: 0.0857, Accuracy: 0.9351, Precision: 0.8306, Recall: 0.8824, F1: 0.8557, FalseAlarmRate: 0.0502, MissedDetectionRate: 0.1176, ROC-AUC: 0.9791, PR-AUC: 0.9381
+2026-06-26 00:42:41,499 - INFO - Epoch [94/100], Loss: 0.2417, Accuracy: 0.8934, Precision: 0.7404, Recall: 0.7873, F1: 0.7631, FalseAlarmRate: 0.0770, MissedDetectionRate: 0.2127, ROC-AUC: 0.9543, PR-AUC: 0.8773
+2026-06-26 00:43:17,667 - INFO - Epoch [95/100], Loss: 0.1127, Accuracy: 0.9374, Precision: 0.9184, Recall: 0.7822, F1: 0.8448, FalseAlarmRate: 0.0194, MissedDetectionRate: 0.2178, ROC-AUC: 0.9755, PR-AUC: 0.9322
+2026-06-26 00:43:54,392 - INFO - Epoch [96/100], Loss: 0.1262, Accuracy: 0.9264, Precision: 0.9050, Recall: 0.7403, F1: 0.8144, FalseAlarmRate: 0.0217, MissedDetectionRate: 0.2597, ROC-AUC: 0.9658, PR-AUC: 0.9099
+2026-06-26 00:44:31,123 - INFO - Epoch [97/100], Loss: 0.1235, Accuracy: 0.9400, Precision: 0.8908, Recall: 0.8262, F1: 0.8573, FalseAlarmRate: 0.0282, MissedDetectionRate: 0.1738, ROC-AUC: 0.9750, PR-AUC: 0.9319
+2026-06-26 00:45:07,943 - INFO - Epoch [98/100], Loss: 0.1034, Accuracy: 0.9202, Precision: 0.8762, Recall: 0.7382, F1: 0.8013, FalseAlarmRate: 0.0291, MissedDetectionRate: 0.2618, ROC-AUC: 0.9631, PR-AUC: 0.9054
+2026-06-26 00:45:44,673 - INFO - Epoch [99/100], Loss: 0.1031, Accuracy: 0.9440, Precision: 0.8981, Recall: 0.8384, F1: 0.8673, FalseAlarmRate: 0.0265, MissedDetectionRate: 0.1616, ROC-AUC: 0.9781, PR-AUC: 0.9346
+2026-06-26 00:45:47,335 - INFO - Best model updated at epoch 99, Accuracy: 0.9440
+2026-06-26 00:46:23,967 - INFO - Epoch [100/100], Loss: 0.0799, Accuracy: 0.8941, Precision: 0.8140, Recall: 0.6667, F1: 0.7330, FalseAlarmRate: 0.0425, MissedDetectionRate: 0.3333, ROC-AUC: 0.9345, PR-AUC: 0.8502
+2026-06-26 00:46:30,190 - INFO - ---------------------------结束模型训练---------------------------
+2026-06-26 00:46:30,190 - INFO - 总共用时1:01:52.215769，平均用时 0:00:37.122158 /epoch
+2026-06-26 00:46:32,028 - INFO - 模型推理总用时：1.8377 秒
+2026-06-26 00:46:32,028 - INFO - 测试结果为：
+2026-06-26 00:46:32,028 - INFO - Accuracy: 0.8941, Precision: 0.8140, Recall: 0.6667, F1: 0.7330, FalseAlarmRate: 0.0425, MissedDetectionRate: 0.3333, ROC-AUC: 0.9345, PR-AUC: 0.8502
+2026-06-26 00:46:32,028 - INFO - 混淆矩阵: [[TN, FP], [FN, TP]] = [[3359, 149], [326, 652]]

@@ -1,0 +1,4 @@
+pandas 
+scikit-learn 
+PyWavelets 
+EMD-signal

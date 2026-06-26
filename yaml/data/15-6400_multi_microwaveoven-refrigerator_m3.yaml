@@ -1,0 +1,6 @@
+data:
+  U_path: "E:/AFCI/Datasets/IAED-processed/6400_multi_microwaveoven-refrigerator_m3/U.csv"
+  I_path: "E:/AFCI/Datasets/IAED-processed/6400_multi_microwaveoven-refrigerator_m3/I.csv"
+  label_path: "E:/AFCI/Datasets/IAED-processed/6400_multi_microwaveoven-refrigerator_m3/label.csv"
+  window_size: 1024
+  sample_rate: 6400

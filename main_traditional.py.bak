@@ -1,0 +1,178 @@
+# 导入必要模块
+import argparse
+from datetime import datetime
+
+import pandas as pd
+import numpy as np
+from collections import defaultdict
+
+
+from utils.GetData import load_data_parallel, get_data
+from utils.ML import ModelTrainer
+from utils.preprocess import preprocess
+from utils.utils_logger import setup_logger
+
+""" 10个低频, 15个高频
+00-10000_multi_airconditioner02-refrigerator_m2.yaml
+01-10000_multi_kettle01-microwaveoven_m2.yaml
+02-10000_multi_refrigerator-airconditioner_m2.yaml
+03-10000_multi_ricecooker-electricoven_m2.yaml
+04-10000_multi_inductioncooker-airpurifier_m2.yaml
+05-10000_multi_airpurifier-airconditioner03_m2.yaml
+06-10000_multi_microwaveoven-waterheater_m2.yaml
+07-10000_multi_electricoven-washingmachine_m2.yaml
+08-10000_multi_airconditioner01-inductioncooker_m2.yaml
+09-10000_single_inductioncooker_m1.yaml
+10-10000_single_refrigerator_m1.yaml
+11-10000_single_electricoven_m1.yaml
+12-10000_single_ricecooker_m1.yaml
+13-10000_single_kettle01_m1.yaml
+14-10000_single_microwaveoven_m1.yaml
+
+15-6400_multi_microwaveoven-refrigerator_m3.yaml
+16-6400_multi_electricoven-refrigerator_m3.yaml
+17-6400_multi_kettle02-airpurifier_m3.yaml
+18-6400_single_inductioncooker_m1.yaml
+19-6400_single_refrigerator_m1.yaml
+20-6400_single_kettle02_m1.yaml
+21-6400_single_electricoven_m1.yaml
+22-6400_single_ricecooker_m1.yaml
+23-6400_single_kettle01_m1.yaml
+24-6400_single_microwaveoven_m1.yaml
+"""
+
+window_size = 1000
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Traditional Machine Learning Methods Training")
+
+    # Data parameters
+    parser.add_argument("--data-type", type=str, default="LR-all", choices=["HR-mix1", "HR-single", "LR-mix2", "LR-single", "HR-all", "LR-all", "test"], help="Type of dataset to use")
+    # windows PC    "E:/AFCI/Datasets/"
+    # linux 9003 "/home/zzy/Datasets/"
+    parser.add_argument("--data_path", type=str, default="E:/AFCI/Datasets/", help="Base path for dataset")
+
+    # Training parameters
+    parser.add_argument("--n-runs", type=int, default=5, help="Number of runs for statistical evaluation")
+
+    return parser.parse_args()
+
+
+######################训练######################
+def train(input, label, sample_rate, n_runs=5):
+    """
+    训练传统机器学习模型，重复n_runs次并计算统计结果
+    """
+    trainer = ModelTrainer()
+
+    # 存储所有运行的结果
+    all_results = defaultdict(lambda: defaultdict(list))
+
+    print(f"开始进行 {n_runs} 次训练和测试...\n")
+
+    for run in range(n_runs):
+        print(f"第 {run+1}/{n_runs} 次运行中...", end=" ")
+
+        # 每次重新随机划分数据
+        split_data_tuple = trainer.split_data(input, label)
+
+        # 得到accuracy，FPR,FNR等数据
+        results = trainer.train_and_evaluate(*split_data_tuple)
+
+        # 收集所有模型的结果
+        for model_name, metrics in results.items():
+            for metric_name, metric_value in metrics.items():
+                all_results[model_name][metric_name].append(metric_value)
+
+        print("完成")
+
+    # 计算均值和标准差
+    print("\n" + "=" * 100)
+    print("五次测试结果汇总（均值 ± 标准差，百分比格式）")
+    print("=" * 100)
+
+    # 获取所有模型和指标名称
+    model_names = list(all_results.keys())
+    if not model_names:
+        print("没有结果可显示")
+        return None, None
+
+    # 获取所有指标名称（使用第一个模型的指标）
+    metric_names = list(all_results[model_names[0]].keys())
+
+    # 创建结果表格
+    result_data = {}
+    for metric_name in metric_names:
+        result_data[metric_name] = {}
+        for model_name in model_names:
+            values = all_results[model_name][metric_name]
+            mean_val = np.mean(values)
+            std_val = np.std(values, ddof=1)  # 样本标准差
+            # 百分比格式
+            mean_percent = mean_val * 100
+            std_percent = std_val * 100
+            result_data[metric_name][model_name] = f"{mean_percent:.2f} ± {std_percent:.2f}"
+
+    # 转换为DataFrame并转置，使模型为行，指标为列
+    result_df = pd.DataFrame(result_data).T
+    print("\n", result_df)
+
+    # 输出详细数据（可选：显示5次具体数值）
+    print("\n" + "=" * 100)
+    print("详细数据（五次测试的具体数值）")
+    print("=" * 100)
+
+    for model_name in model_names:
+        print(f"\n{model_name}:")
+        for metric_name in metric_names:
+            values = all_results[model_name][metric_name]
+            mean_val = np.mean(values)
+            std_val = np.std(values, ddof=1)
+            print(f"  {metric_name}:")
+            print(f"    五次结果: {[f'{v*100:.2f}' for v in values]}")  # 百分比显示
+            print(f"    均值 ± 标准差: {mean_val*100:.2f} ± {std_val*100:.2f}")
+
+    # 返回结果（用于后续处理）
+    final_results = {}
+    paper_format = {}
+    for model_name, metrics_dict in all_results.items():
+        final_results[model_name] = {}
+        paper_format[model_name] = {}
+        for metric_name, values in metrics_dict.items():
+            mean_val = np.mean(values)
+            std_val = np.std(values, ddof=1)
+            final_results[model_name][metric_name] = {"mean": mean_val, "std": std_val, "values": values}
+            mean_percent = mean_val * 100
+            std_percent = std_val * 100
+            paper_format[model_name][metric_name] = f"{mean_percent:.2f} ± {std_percent:.2f}"
+
+    return final_results, paper_format
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    data_type, data_paths = get_data(args.data_type)
+    logger = setup_logger(task_type="Train", data_type=args.data_type)
+
+    logger.info("---------------------------数据集描述---------------------------")
+    logger.info("训练数据集为{}".format(data_type))
+    for data_path in data_paths:
+        logger.info("Loading data from {}".format(data_path))
+
+    # 数据读取
+    logger.info("---------------------------数据读取---------------------------")
+    start_time = datetime.now()
+    U_combined, I_combined, label_combined, sample_rate = load_data_parallel(data_paths, args.data_path)
+    end_time = datetime.now()
+    elapsed_time = (end_time - start_time).total_seconds()
+    logger.info(f"数据读取完成，总共用时{elapsed_time:.2f} 秒")
+
+    # 预处理拼接后的数据
+    logger.info("---------------------------数据预处理---------------------------")
+    features_input = preprocess(I_combined.values, sample_rate)
+    logger.info(f"预处理完成，特征维度: {features_input.shape}")
+
+    # 训练模型
+    logger.info("---------------------------开始训练传统机器学习模型---------------------------")
+    train(features_input, label_combined, sample_rate, n_runs=args.n_runs)
