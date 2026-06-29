@@ -95,7 +95,7 @@ def format_confusion_matrix(confusion_matrix):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Electrical Appliance Identification Testing")
-    parser.add_argument("--config", type=str, default="/root/Projects/ArcFaultDetection/yaml/config/Transformer.yaml", help="Path to config yaml file")
+    parser.add_argument("--config", type=str, default="/root/Projects/ArcFaultDetection/yaml/config/MobileNetV2/MobileNetV2-LR-all.yaml", help="Path to config yaml file")
     cli_args = parser.parse_args()
 
     with open(cli_args.config, "r", encoding="utf-8") as f:

@@ -2,7 +2,7 @@
 # "HR-mix1", "HR-single", "LR-mix2", "LR-single", "HR-all", "LR-all", "test"
 data:
   data_type: "LR-all"
-  data_path: "/home/xiaoman/Projects/Datasets/"
+  data_path: "/root/Projects/Datasets/"
 
 # Model parameters
 model:
@@ -17,21 +17,23 @@ mobilenetv2:
 # Training parameters
 training:
   epochs: 100
-  batch_size: 512
-  lr: 1.0e-3
+  batch_size: 1024
+  lr: 1.0e-4
   optimizer: "Adam"
   momentum: 0.9
 
 # Test parameters
 test:
-  n_runs: 5
-  checkpoint_mode: "both"
+  n_runs: 20
+  checkpoint_mode: "both"         # ADINet 常用同时测试 best/last
   checkpoint_path: null
-  model_save_format: "full_model"
+  model_save_format: "state_dict" # ADINet 分支保存为 state_dict
 
 # System parameters
 system:
   device: "cuda"
   log_interval: 1
-  save_interval: 10
-  save_path: "/home/xiaoman/Projects/AFCI/checkpoints/master/MobileNetV2/LR-all"
+  save_interval: 20
+  # windows: "E:/AFCI/checkpoints"
+  # linux: "/home/xiaoman/Projects/AFCI/checkpoints"
+  save_path: "/root/Projects/AFCI/checkpoints"
