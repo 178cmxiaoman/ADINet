@@ -19,21 +19,20 @@ def _round_metric(value):
 
 
 def eval(model, test_dataloader, device):
-    model.eval()  # 将模型设置为评估模式
+    model.eval()
     correct = 0
     total = 0
     y_true = []
     y_pred = []
     y_score = []
 
-    with torch.no_grad():  # 在测试时不计算梯度
+    with torch.no_grad():
         for batch_X, batch_y in test_dataloader:
             batch_X = batch_X.to(device)
             batch_y = batch_y.to(device)
 
-            # 前向传播
             outputs = model(batch_X)
-            _, predicted = torch.max(outputs.data, 1)  # 获取预测结果
+            _, predicted = torch.max(outputs.data, 1)
             if outputs.ndim == 2 and outputs.size(1) > 1:
                 positive_scores = torch.softmax(outputs, dim=1)[:, 1]
             else:
@@ -46,18 +45,14 @@ def eval(model, test_dataloader, device):
             y_pred.extend(predicted.cpu().numpy())
             y_score.extend(positive_scores.cpu().numpy())
 
-    # 计算准确率
     accuracy = _safe_divide(correct, total)
-    # print(f"Test Accuracy: {accuracy:.4f}")
 
-    # 计算混淆矩阵，固定 labels 顺序为 [0, 1]，避免某一类缺失时 ravel 失败。
     cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
     TN, FP, FN, TP = cm.ravel()
 
     false_alarm_rate = _safe_divide(FP, FP + TN)
     missed_detection_rate = _safe_divide(FN, FN + TP)
 
-    # 计算 Precision, Recall 和 F1 分数
     precision = precision_score(y_true, y_pred, average="binary", zero_division=0)
     recall = recall_score(y_true, y_pred, average="binary", zero_division=0)
     f1 = f1_score(y_true, y_pred, average="binary", zero_division=0)
@@ -69,7 +64,6 @@ def eval(model, test_dataloader, device):
         roc_auc = float("nan")
         pr_auc = float("nan")
 
-    # 返回结果
     results = {
         "Accuracy": _round_metric(accuracy),
         "Precision": _round_metric(precision),

@@ -5,16 +5,16 @@ from datetime import datetime
 
 def setup_logger(log_dir="logs", task_type="Train", data_type="", extra_log_dirs=None):
     """
-    设置日志记录器，支持动态生成日志文件名并同时输出到多个文件和控制台。
+    Configure console and file logging for one experiment run.
 
-    参数:
-        log_dir (str): 主日志文件存储目录，默认为 "logs"。
-        task_type (str): 任务类型，如 "Train" 或 "Test"，默认为 "Train"。
-        data_type (str): 数据集类型，如 "HR-single"，默认为空字符串。
-        extra_log_dirs (list[str] | None): 额外日志目录列表，例如保存到配置中的 save_path。
+    Args:
+        log_dir: Primary log directory.
+        task_type: Experiment stage, such as "Train" or "Test".
+        data_type: Dataset split name, such as "HR-single".
+        extra_log_dirs: Optional additional directories for mirrored logs.
 
-    返回:
-        logger (logging.Logger): 配置好的日志记录器。
+    Returns:
+        Configured logger.
     """
     log_dirs = [log_dir]
     if extra_log_dirs:

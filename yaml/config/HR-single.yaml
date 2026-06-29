@@ -1,0 +1,29 @@
+data:
+  data_type: "HR-single"
+  data_path: "/path/to/IAED-processed"
+
+model:
+  model: "ADINet"
+  window_size: null
+
+training:
+  epochs: 300
+  batch_size: 2048
+  test_size: 0.2
+  lr: 1.0e-3
+  optimizer: "AdamW"
+  weight_decay: 0.0
+
+evaluation:
+  n_runs: 1
+  checkpoint_mode: "both"
+  checkpoint_path: null
+  model_save_format: "state_dict"
+
+system:
+  device: "cuda"
+  seed: 42
+  num_workers: 0
+  log_interval: 1
+  save_interval: 50
+  save_path: "checkpoints/ADINet-HR-single"

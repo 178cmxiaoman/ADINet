@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+.DS_Store
+
+logs/
+checkpoints/
+saved_checkpoints/
+feature_space_plots/
+output/
+
+.env
+.venv/
+venv/

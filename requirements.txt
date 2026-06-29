@@ -1,4 +1,7 @@
-pandas 
-scikit-learn 
-PyWavelets 
-EMD-signal
+numpy
+pandas
+scikit-learn
+PyYAML
+torch
+pytorch-wavelets
+thop
